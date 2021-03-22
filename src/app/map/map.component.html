@@ -1,0 +1,147 @@
+<div class="container">
+    <div id="map" class="map" (click)="openPopup($event)"></div>
+    <div class="ol-popup" *ngIf="closer" [ngStyle]="{'left.px':x, 'top.px':y}">
+        <a href="#" class="ol-popup-closer" (click)="closePopup()"></a>
+        <div class="ol-popup-content">
+            <form [formGroup]="sendForm">
+                <div class="header">
+                    <h2>Gerekli Bilgileri Giriniz.</h2>
+                </div>
+                <div class="content">
+                    <div class="name">
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                height="20px" viewBox="0 0 512 512" width="20px">
+                                <linearGradient id="a" gradientTransform="matrix(1 0 0 -1 0 -19430)"
+                                    gradientUnits="userSpaceOnUse" x1="0" x2="512" y1="-19686" y2="-19686">
+                                    <stop offset="0" stop-color="#00f38d" />
+                                    <stop offset="1" stop-color="#009eff" />
+                                </linearGradient>
+                                <path
+                                    d="m512 256c0 141.386719-114.613281 256-256 256s-256-114.613281-256-256 114.613281-256 256-256 256 114.613281 256 256zm0 0"
+                                    fill="url(#a)" />
+                                <path
+                                    d="m314.203125 247.9375c23.515625-17.710938 38.75-45.851562 38.75-77.488281 0-53.457031-43.492187-96.949219-96.953125-96.949219-53.457031 0-96.949219 43.492188-96.949219 96.949219 0 31.636719 15.230469 59.777343 38.746094 77.488281-62.960937 23.632812-107.894531 84.445312-107.894531 155.5625h30c0-75.046875 61.054687-136.097656 136.101562-136.097656 75.042969 0 136.097656 61.050781 136.097656 136.097656h30c-.003906-71.117188-44.933593-131.929688-107.898437-155.5625zm-125.152344-77.488281c0-36.917969 30.03125-66.949219 66.949219-66.949219s66.949219 30.03125 66.949219 66.949219-30.03125 66.953125-66.949219 66.953125-66.949219-30.035156-66.949219-66.953125zm0 0"
+                                    fill="#fff" />
+                            </svg>
+                        </label>
+                        <input type="text" placeholder="İsminiz.." formControlName="name">
+                    </div>
+                    <!-- <div class="date">
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px"
+                                viewBox="0 0 508 508" style="enable-background:new 0 0 508 508;" xml:space="preserve">
+                                <circle style="fill:#FD8469;" cx="254" cy="254" r="254" />
+                                <path style="fill:#FFFFFF;"
+                                    d="M386,131.6H122c-9.6,0-17.2,7.6-17.2,17.2v213.6c0,9.6,7.6,17.2,17.2,17.2h264  c9.6,0,17.2-7.6,17.2-17.2V148.8C402.8,139.2,395.2,131.6,386,131.6z" />
+                                <path style="fill:#4CDBC4;"
+                                    d="M402.8,197.6v-48.8c0-9.6-7.6-17.2-17.2-17.2H122c-9.6,0-17.2,7.6-17.2,17.2v48.8H402.8z" />
+                                <g>
+                                    <path style="fill:#324A5E;"
+                                        d="M172,164.8L172,164.8c-6,0-10.8-4.8-10.8-10.8v-45.2c0-6,4.8-10.8,10.8-10.8l0,0   c6,0,10.8,4.8,10.8,10.8V154C182.8,160,178,164.8,172,164.8z" />
+                                    <path style="fill:#324A5E;"
+                                        d="M336,164.8L336,164.8c-6,0-10.8-4.8-10.8-10.8v-45.2c0-6,4.8-10.8,10.8-10.8l0,0   c6,0,10.8,4.8,10.8,10.8V154C346.8,160,341.6,164.8,336,164.8z" />
+                                </g>
+                                <g>
+                                    <rect x="206.8" y="221.2" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="271.2" y="221.2" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="336" y="221.2" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="142" y="271.6" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="206.8" y="271.6" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="271.2" y="271.6" style="fill:#CED5E0;" width="30" height="30" />
+                                </g>
+                                <rect x="336" y="271.6" style="fill:#FF7058;" width="30" height="30" />
+                                <g>
+                                    <rect x="142" y="322" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="206.8" y="322" style="fill:#CED5E0;" width="30" height="30" />
+                                    <rect x="271.2" y="322" style="fill:#CED5E0;" width="30" height="30" />
+                                </g>
+                            </svg>
+                        </label>
+                        <input type="datetime-local" formControlName = "date">
+                    </div> -->
+                    <div class="location">
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512"
+                                height="20px" viewBox="0 0 512 512" width="20px">
+                                <g>
+                                    <path
+                                        d="m255.605 0c-112.432.213-204.066 92.441-203.586 204.872.006 1.386.026 2.768.059 4.148 1.03 42.5 16.338 83.42 42.55 116.89l136.095 173.778c12.854 16.413 37.698 16.413 50.552 0l136.085-173.766c26.412-33.726 41.736-75.011 42.581-117.84.027-1.364.04-2.731.04-4.101 0-112.787-91.539-204.194-204.376-203.981z"
+                                        fill="#a6e7f0" />
+                                    <path
+                                        d="m459.983 203.987c0 1.363-.01 2.736-.041 4.099-.847 42.829-16.169 84.109-42.581 117.841l-136.086 173.762c-12.163 15.529-35.044 16.365-48.363 2.519 10.81 1.477 22.251-2.53 29.685-12.018l136.085-173.762c26.412-33.722 41.734-75.012 42.581-117.841.031-1.363.041-2.726.041-4.099 0-75.663-41.197-141.713-102.384-176.932 71.337 31.781 121.063 103.293 121.063 186.431z"
+                                        fill="#6bd9e7" />
+                                    <circle cx="255.999" cy="199.146" fill="#faf7f7" r="143.387" />
+                                    <path
+                                        d="m399.384 199.144c0 79.194-64.191 143.385-143.385 143.385-30.191 0-58.203-9.324-81.311-25.266 19.194 9.54 40.836 14.899 63.727 14.899 79.194 0 143.396-64.202 143.396-143.385 0-48.993-24.574-92.245-62.064-118.109 47.206 23.47 79.637 72.194 79.637 128.476z"
+                                        fill="#ede1dd" />
+                                    <g>
+                                        <path
+                                            d="m236.149 264.695c-5.997 0-11.771-2.327-16.095-6.507l-38.572-37.28c-9.197-8.89-9.447-23.553-.558-32.75 8.889-9.196 23.549-9.451 32.752-.558l21.533 20.811 62.195-67.363c8.677-9.399 23.33-9.983 32.729-1.306 9.397 8.677 9.982 23.331 1.304 32.729l-78.27 84.774c-4.228 4.581-10.126 7.263-16.358 7.441-.22.006-.44.009-.66.009z"
+                                            fill="#8d9ca8" />
+                                    </g>
+                                    <g>
+                                        <path
+                                            d="m331.435 172.475-78.265 84.769c-4.233 4.584-10.129 7.259-16.365 7.444-.217 0-.434.01-.661.01-5.989 0-11.771-2.333-16.087-6.515l-10.986-10.625c3.211 1.642 6.794 2.509 10.459 2.509.217 0 .434 0 .661-.01 6.226-.176 12.122-2.86 16.355-7.444l78.265-84.769c6.092-6.587 7.62-15.777 4.739-23.665 3.831.857 7.496 2.705 10.583 5.565 9.397 8.673 9.985 23.324 1.302 32.731z"
+                                            fill="#7a8c98" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
+                        <input value="{{map.hdms}}" formControlName="coordi1">
+                        <!-- <input value="{{map.hdms}}" formControlName="coordi2"> -->
+                    </div>
+                    <!-- <div class="type">
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <polygon style="fill:#FFB74F;"
+                                    points="432.106,250.534 432.106,470.021 296.578,470.021 296.578,336.975 221.399,336.975   221.399,470.021 79.894,470.021 79.894,250.534 256,115.075 " />
+                                <path style="fill:#FF7D3C;"
+                                    d="M439.485,183.135V90.306h-74.167v35.772L256,41.979L0,238.92l53.633,69.712L256,152.959  l202.367,155.672L512,238.92L439.485,183.135z" />
+                                <polygon style="fill:#FF9A00;"
+                                    points="432.106,250.534 432.106,470.021 296.578,470.021 296.578,336.975 256,336.975 256,115.075   " />
+                                <polygon style="fill:#FF4E19;"
+                                    points="512,238.92 458.367,308.632 256,152.959 256,41.979 365.318,126.078 365.318,90.306   439.485,90.306 439.485,183.135 " />
+                            </svg>
+                        </label>
+                        
+                        <select name="type" formControlName = "addressType">
+                            <option disabled=''>--Adres Türü--
+                            <option>Ev
+                            <option>İş
+                            <option>Okul
+                            <option>Tatil
+                            <option>Diğer
+                        </select>
+                    </div> -->
+
+                    <div class="type">
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <polygon style="fill:#FFB74F;"
+                                    points="432.106,250.534 432.106,470.021 296.578,470.021 296.578,336.975 221.399,336.975   221.399,470.021 79.894,470.021 79.894,250.534 256,115.075 " />
+                                <path style="fill:#FF7D3C;"
+                                    d="M439.485,183.135V90.306h-74.167v35.772L256,41.979L0,238.92l53.633,69.712L256,152.959  l202.367,155.672L512,238.92L439.485,183.135z" />
+                                <polygon style="fill:#FF9A00;"
+                                    points="432.106,250.534 432.106,470.021 296.578,470.021 296.578,336.975 256,336.975 256,115.075   " />
+                                <polygon style="fill:#FF4E19;"
+                                    points="512,238.92 458.367,308.632 256,152.959 256,41.979 365.318,126.078 365.318,90.306   439.485,90.306 439.485,183.135 " />
+                            </svg>
+                        </label>
+                        <input type="text" formControlName="addressType" placeholder="Adres Türü: Ev,İş..Diğer">
+                    </div>
+
+                </div>
+                <div class="send">
+                    <button (click)="dataSave()">Kaydet</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
